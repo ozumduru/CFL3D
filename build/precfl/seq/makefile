@@ -69,7 +69,9 @@ $(FOBJ_SPEC): $(PRE_HEAD)
 	$(FTN) $(CPPOPT) $(FFLAG_SPEC) -c $*.F
 
 $(EXEC): $(SOURCE) $(OBJECT) $(FSRC_SPEC) $(FOBJ_SPEC)
-	$(FTN) $(CPPOPT) $(LFLAG) -o $(EXEC) $(OBJECT) $(FOBJ_SPEC) $(LLIBS)
+	-ln -s ../../cfl/libs/module_kwstm.o .
+	-ln -s ../../cfl/libs/module_profileout.o .
+	$(FTN) $(CPPOPT) $(LFLAG) -o $(EXEC) module_kwstm.o module_profileout.o $(OBJECT) $(FOBJ_SPEC) $(LLIBS)
 	@ echo "                                                              "
 	@ echo "=============================================================="
 	@ echo "                                                              "
