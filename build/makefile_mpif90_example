@@ -46,11 +46,11 @@
 # *************** COMPILER FLAG DEFINITIONS (MACHINE SPECIFIC) ***************
 #                 (CURRENT DEFINITIONS FOR x86_64 ARCHITECTURE)
 
-FFLAG        = -O2 -fbacktrace -I ../../$(CFLLIBSD)
-FFLAG_SPEC   = -O2 -fbacktrace -I ../../$(CFLLIBSD)
+FFLAG        = -O3 -fbacktrace -w -march=native -J../../$(CFLLIBSD)
+FFLAG_SPEC   = -O3 -fbacktrace -w -march=native -J../../$(CFLLIBSD)
 PREC         = -fdefault-real-8
 PREC_MPI     = -DDBLE_PRECSN
-LFLAG        = 
+LFLAG        = -z muldefs -march=native -fbacktrace 
 LLIBS        =
 LLIBS_SEQ    =  
 MPI_INCDIR   =
@@ -58,9 +58,9 @@ CGNS_INCDIR  =
 CPP          = cpp
 CPPFLAG      = -P
 CPPOPT       =  $(MPI_INCDIR) -DDIST_MPI $(PREC_MPI)
-CPPOPT_SP    = -DP3D_SINGLE -DNOREDIRECT $(PREC_MPI) $(CGNS_INCDIR)
+CPPOPT_SP    = -fallow-argument-mismatch -DP3D_SINGLE -DNOREDIRECT $(PREC_MPI) $(CGNS_INCDIR)
 CPPOPT_CMPLX = -DCMPLX
-FTN          = gfortran
+FTN          = mpif90
 CC           = gcc
 CFLAG        = 
 AROPT        = rusc
