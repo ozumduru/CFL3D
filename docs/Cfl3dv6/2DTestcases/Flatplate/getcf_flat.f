@@ -16,16 +16,19 @@ c  read front matter that we do not need
 c  Reynolds number for this case is 6 million, based on plate length
       re=6.e6
 c  read cf
-      write(3,'(''variables="x","c_f"'')')
-      write(3,'(''zone,t="CFD"'')')
+      imax=0
       do n=1,63
-        read(2,*) idum,idum,idum,x(n),dum,dum,dum,dum,dum,cf(n)
-c  write results only for x > 0
+      read(2,*) idum,idum,idum,x(n),dum,dum,dum,dum,dum,cf(n)
+      if (x(n) .gt. 0.) imax=imax+1
+      end do
+      write(3,*) 'variables="x","c_f"'
+      write(3,*) 'zone t="CFD", DATAPACKING=POINT, I=',imax
+      do n=1,63
         if (x(n) .gt. 0.) then
           write(3,'(2e15.5)') x(n),cf(n)
         end if
       enddo
-      write(3,'(''zone,t="theory"'')')
+      write(3,*) 'zone t="theory", DATAPACKING=POINT, I=',imax
       do n=1,63
         if (x(n) .gt. 0.) then
 c  get rex
