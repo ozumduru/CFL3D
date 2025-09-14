@@ -310,6 +310,8 @@ c
       common /deformz/ beta1,beta2,alpha1,alpha2,isktyp,negvol,meshdef,
      .                 nsprgit,ndgrd,ndwrt
 c
+      common /ozum/ res_minval
+c
 c      time step cycle:
 c
 c      nt       - time step counter
@@ -956,6 +958,9 @@ c***********************************************
 c
 c     loop over multigrid cycles
 c
+      ncyc  = ncyc1(iseq)
+      rmsb = 100
+c
       do 7000 icyc=1,ncyc
 c
       if (icyc.gt.1) isklton = 0
@@ -981,6 +986,15 @@ c            higher levels to zero
           end if
         end if
       end if
+c
+c      res_minval stop inner iteration procedure
+c
+        if (res_minval .lt. 0) then
+          if (log10(rmsb) .le. res_minval) then
+             ncyc = icyc
+          end if
+        end if
+c
 #if defined DIST_MPI
       istop_data(1) = ncyc
       do is =1,mseq
