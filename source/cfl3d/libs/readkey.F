@@ -129,12 +129,18 @@ c
       common /iupdate/ iupdatemean
       common /wallvel_2034/ uub_2034,vvb_2034,wwb_2034,vvb_xaxisrot2034
 c
+      common /ozum/ res_minval
+c
       ititr = 0
       nkey  = 0
 c
 c*********************************************
 c     define default keyword-driven input data
 c*********************************************
+c
+c     minimum value of residual
+      res_minval = 0.0
+      nkey   = nkey + 1
 c
 c     ratio of specific heats
       gamma  = 1.4
@@ -1188,6 +1194,11 @@ c
       lc2  =   0
       lcl  = 210
       call parser(inpstr,npos,lc1,lc2,lcl,1)
+c
+      if (inpstr(lc1:lc2).eq.'res_minval') then
+         lc2 = lc2 +1
+         read(inpstr(lc2:lcl),*) realval(1)
+         res_minval = realval(1)
 c
       if (inpstr(lc1:lc2).eq.'gamma') then
          lc2 = lc2 +1
