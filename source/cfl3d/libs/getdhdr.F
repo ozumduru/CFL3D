@@ -61,10 +61,14 @@ c
          datahdr(2)  = '   tt/tinf'
          datahdr(3)  = '     alpha'
          datahdr(4)  = '      beta'
-         if (abs(ndata).gt.4) then
+         datahdr(5)  = ' pt/pinf_e'
+         datahdr(6)  = ' tt/tinf_e'
+         datahdr(7)  = 'pt/pinf_nt'
+         datahdr(8)  = 'tt/tinf_nt'
+         if (abs(ndata).gt.8) then
             datahdr(5)  = '     turb1'
          end if
-         if (abs(ndata).gt.5) then
+         if (abs(ndata).gt.9) then
             datahdr(6)  = '     turb2'
          end if
       end if
