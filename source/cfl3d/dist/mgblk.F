@@ -685,7 +685,7 @@ c
 c     ioutsub = 1/ncyc for global convergence history output at beginning/end
 c     of subiteration loop
 c
-      ioutsub = ncyc
+      ioutsub = 1
 c
 c     loop over time steps
 c
@@ -959,7 +959,6 @@ c
 c     loop over multigrid cycles
 c
       ncyc  = ncyc1(iseq)
-      ioutsub = ncyc
       rmsb = 100
 c
       do 7000 icyc=1,ncyc
@@ -993,7 +992,6 @@ c
         if (res_minval .lt. 0) then
           if (log10(rmsb) .le. res_minval) then
              ncyc = icyc
-             ioutsub = ncyc
           end if
         end if
 c
