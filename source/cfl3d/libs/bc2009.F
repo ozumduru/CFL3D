@@ -100,7 +100,7 @@ c     if freestream values are to be used (itrflg1 = 0); the check
 c     assumes if the first point has been set, all points have been
 c
       itrflg1 = 0
-      if (real(bcdata(1,1,ip,5)) .gt. -1.e10) itrflg1 = 1
+      if (real(bcdata(1,1,ip,9)) .gt. -1.e10) itrflg1 = 1
 c
       do 300 i=ista,iend1
       ii = i-ista+1
@@ -109,10 +109,21 @@ c
       do 800 k=ksta,kend1
       kk = k-ksta+1
 c
-      pte   = bcdata(kk,ii,ip,1)
-      tte   = bcdata(kk,ii,ip,2)
+      ptes   = bcdata(kk,ii,ip,1)
+      ttes   = bcdata(kk,ii,ip,2)
       alpe  = bcdata(kk,ii,ip,3)
       betae = bcdata(kk,ii,ip,4)
+      pteend = bcdata(kk,ii,ip,5)
+      tteend = bcdata(kk,ii,ip,6)
+      ptent = bcdata(kk,ii,ip,7)
+      ttent = bcdata(kk,ii,ip,8)
+c
+      pteinc=(pteend-ptes)*time/ptent/dt0
+      tteinc=(tteend-ttes)*time/ttent/dt0
+      pte=(ptes + pteinc)*p0
+      tte=ttes + tteinc
+      if (real(pte) .ge. real(pteend)) pte = pteend
+      if (real(tte) .ge. real(tteend)) tte = tteend
 c
       pte=pte*p0
       alpe=alpe/radtodeg
@@ -189,7 +200,7 @@ c     if freestream values are to be used (itrflg1 = 0); the check
 c     assumes if the first point has been set, all points have been
 c
       itrflg1 = 0
-      if (real(bcdata(1,1,ip,5)) .gt. -1.e10) itrflg1 = 1
+      if (real(bcdata(1,1,ip,9)) .gt. -1.e10) itrflg1 = 1
 c
       do 310 i=ista,iend1
       ii = i-ista+1
@@ -198,12 +209,22 @@ c
       do 810 k=ksta,kend1
       kk = k-ksta+1
 c
-      pte   = bcdata(kk,ii,ip,1)
-      tte   = bcdata(kk,ii,ip,2)
+      ptes   = bcdata(kk,ii,ip,1)
+      ttes   = bcdata(kk,ii,ip,2)
       alpe  = bcdata(kk,ii,ip,3)
       betae = bcdata(kk,ii,ip,4)
+      pteend = bcdata(kk,ii,ip,5)
+      tteend = bcdata(kk,ii,ip,6)
+      ptent = bcdata(kk,ii,ip,7)
+      ttent = bcdata(kk,ii,ip,8)
 c
-      pte=pte*p0
+      pteinc=(pteend-ptes)*time/ptent/dt0
+      tteinc=(tteend-ttes)*time/ttent/dt0
+      pte=(ptes + pteinc)*p0
+      tte=ttes + tteinc
+      if (real(pte) .ge. real(pteend)) pte = pteend
+      if (real(tte) .ge. real(tteend)) tte = tteend
+c
       alpe=alpe/radtodeg
       betae=betae/radtodeg
 c
@@ -271,7 +292,7 @@ c******************************************************************************
 c      k=1 boundary             nozzle total BCs                   type 2009
 c******************************************************************************
 c
-      if (nface.eq.5) then
+      if (nface.eq.9) then
 c
 c     check to see if turbulence data is input (itrflg1 = 1) or
 c     if freestream values are to be used (itrflg1 = 0); the check
@@ -286,12 +307,22 @@ c
       do 820 j=jsta,jend1
       jj = j-jsta+1
 c
-      pte   = bcdata(jj,ii,ip,1)
-      tte   = bcdata(jj,ii,ip,2)
+      ptes   = bcdata(jj,ii,ip,1)
+      ttes   = bcdata(jj,ii,ip,2)
       alpe  = bcdata(jj,ii,ip,3)
       betae = bcdata(jj,ii,ip,4)
+      pteend = bcdata(jj,ii,ip,5)
+      tteend = bcdata(jj,ii,ip,6)
+      ptent = bcdata(jj,ii,ip,7)
+      ttent = bcdata(jj,ii,ip,8)
 c
-      pte=pte*p0
+      pteinc=(pteend-ptes)*time/ptent/dt0
+      tteinc=(tteend-ttes)*time/ttent/dt0
+      pte=(ptes + pteinc)*p0
+      tte=ttes + tteinc
+      if (real(pte) .ge. real(pteend)) pte = pteend
+      if (real(tte) .ge. real(tteend)) tte = tteend
+c
       alpe=alpe/radtodeg
       betae=betae/radtodeg
 c
@@ -366,7 +397,7 @@ c     if freestream values are to be used (itrflg1 = 0); the check
 c     assumes if the first point has been set, all points have been
 c
       itrflg1 = 0
-      if (real(bcdata(1,1,ip,5)) .gt. -1.e10) itrflg1 = 1
+      if (real(bcdata(1,1,ip,9)) .gt. -1.e10) itrflg1 = 1
 c
       do 330 i=ista,iend1
       ii = i-ista+1
@@ -379,8 +410,18 @@ c
       tte   = bcdata(jj,ii,ip,2)
       alpe  = bcdata(jj,ii,ip,3)
       betae = bcdata(jj,ii,ip,4)
+      pteend = bcdata(jj,ii,ip,5)
+      tteend = bcdata(jj,ii,ip,6)
+      ptent = bcdata(jj,ii,ip,7)
+      ttent = bcdata(jj,ii,ip,8)
 c
-      pte=pte*p0
+      pteinc=(pteend-ptes)*time/ptent/dt0
+      tteinc=(tteend-ttes)*time/ttent/dt0
+      pte=(ptes + pteinc)*p0
+      tte=ttes + tteinc
+      if (real(pte) .ge. real(pteend)) pte = pteend
+      if (real(tte) .ge. real(tteend)) tte = tteend
+c
       alpe=alpe/radtodeg
       betae=betae/radtodeg
 c
@@ -455,7 +496,7 @@ c     if freestream values are to be used (itrflg1 = 0); the check
 c     assumes if the first point has been set, all points have been
 c
       itrflg1 = 0
-      if (real(bcdata(1,1,ip,5)) .gt. -1.e10) itrflg1 = 1
+      if (real(bcdata(1,1,ip,9)) .gt. -1.e10) itrflg1 = 1
 c
       do 340 k=ksta,kend1
       kk = k-ksta+1
@@ -468,8 +509,18 @@ c
       tte   = bcdata(jj,kk,ip,2)
       alpe  = bcdata(jj,kk,ip,3)
       betae = bcdata(jj,kk,ip,4)
+      pteend = bcdata(jj,kk,ip,5)
+      tteend = bcdata(jj,kk,ip,6)
+      ptent = bcdata(jj,kk,ip,7)
+      ttent = bcdata(jj,kk,ip,8)
 c
-      pte=pte*p0
+      pteinc=(pteend-ptes)*time/ptent/dt0
+      tteinc=(tteend-ttes)*time/ttent/dt0
+      pte=(ptes + pteinc)*p0
+      tte=ttes + tteinc
+      if (real(pte) .ge. real(pteend)) pte = pteend
+      if (real(tte) .ge. real(tteend)) tte = tteend
+c
       alpe=alpe/radtodeg
       betae=betae/radtodeg
 c
@@ -544,7 +595,7 @@ c     if freestream values are to be used (itrflg1 = 0); the check
 c     assumes if the first point has been set, all points have been
 c
       itrflg1 = 0
-      if (real(bcdata(1,1,ip,5)) .gt. -1.e10) itrflg1 = 1
+      if (real(bcdata(1,1,ip,9)) .gt. -1.e10) itrflg1 = 1
 c
       do 350 k=ksta,kend1
       kk = k-ksta+1
@@ -556,8 +607,18 @@ c
       tte   = bcdata(jj,kk,ip,2)
       alpe  = bcdata(jj,kk,ip,3)
       betae = bcdata(jj,kk,ip,4)
+      pteend = bcdata(jj,kk,ip,5)
+      tteend = bcdata(jj,kk,ip,6)
+      ptent = bcdata(jj,kk,ip,7)
+      ttent = bcdata(jj,kk,ip,8)
 c
-      pte=pte*p0
+      pteinc=(pteend-ptes)*time/ptent/dt0
+      tteinc=(tteend-ttes)*time/ttent/dt0
+      pte=(ptes + pteinc)*p0
+      tte=ttes + tteinc
+      if (real(pte) .ge. real(pteend)) pte = pteend
+      if (real(tte) .ge. real(tteend)) tte = tteend
+c
       alpe=alpe/radtodeg
       betae=betae/radtodeg
 c
