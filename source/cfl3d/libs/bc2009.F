@@ -125,7 +125,6 @@ c
       if (real(pte) .ge. real(pteend)) pte = pteend
       if (real(tte) .ge. real(tteend)) tte = tteend
 c
-      pte=pte*p0
       alpe=alpe/radtodeg
       betae=betae/radtodeg
 c
@@ -406,8 +405,8 @@ c
       do 830 j=jsta,jend1
       jj = j-jsta+1
 c
-      pte   = bcdata(jj,ii,ip,1)
-      tte   = bcdata(jj,ii,ip,2)
+      ptes   = bcdata(jj,ii,ip,1)
+      ttes   = bcdata(jj,ii,ip,2)
       alpe  = bcdata(jj,ii,ip,3)
       betae = bcdata(jj,ii,ip,4)
       pteend = bcdata(jj,ii,ip,5)
@@ -505,8 +504,8 @@ c
       do 840 j=jsta,jend1
       jj = j-jsta+1
 c
-      pte   = bcdata(jj,kk,ip,1)
-      tte   = bcdata(jj,kk,ip,2)
+      ptes   = bcdata(jj,kk,ip,1)
+      ttes   = bcdata(jj,kk,ip,2)
       alpe  = bcdata(jj,kk,ip,3)
       betae = bcdata(jj,kk,ip,4)
       pteend = bcdata(jj,kk,ip,5)
@@ -603,8 +602,8 @@ c
       do 850 j=jsta,jend1
       jj = j-jsta+1
 c
-      pte   = bcdata(jj,kk,ip,1)
-      tte   = bcdata(jj,kk,ip,2)
+      ptes   = bcdata(jj,kk,ip,1)
+      ttes   = bcdata(jj,kk,ip,2)
       alpe  = bcdata(jj,kk,ip,3)
       betae = bcdata(jj,kk,ip,4)
       pteend = bcdata(jj,kk,ip,5)
