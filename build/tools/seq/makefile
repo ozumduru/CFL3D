@@ -146,7 +146,7 @@ $(OBJECT21):
 $(OBJECT22):
 	$(FTN) $(CPPOPT) $(FFLAG) -c $*.F
 $(OBJECT23):
-	$(FTN) $(CPPOPT) $(FFLAG) -c $*.F
+	$(FTN) $(CPPOPT) -fcray-pointer $(FFLAG) -c $*.F
 
 EXEC1  = grid_perturb_cmplx
 EXEC2  = grid_perturb
