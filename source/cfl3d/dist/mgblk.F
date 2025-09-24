@@ -989,8 +989,8 @@ c            higher levels to zero
 c
 c      res_minval stop inner iteration procedure
 c
-        if (res_minval .lt. 0) then
-          if (log10(rmsb) .le. res_minval) then
+        if (real(res_minval) .lt. 0) then
+          if (log10(real(rmsb)) .le. real(res_minval)) then
              ncyc = icyc
           end if
         end if
