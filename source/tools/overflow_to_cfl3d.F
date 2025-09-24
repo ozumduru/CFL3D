@@ -794,7 +794,7 @@ c
 c     set dt/cfl number and related quantities
 c
       irest = 0
-      if (restrt .eq. .true.) irest = 1
+      if (restrt .eqv. .true.) irest = 1
       if (dtphys .ne. 0) dt1 = dtphys
       dt1 = -5.0
       iflagts = 0
