@@ -1200,7 +1200,7 @@ c
          read(inpstr(lc2:lcl),*) realval(1)
          res_minval = realval(1)
 c
-      if (inpstr(lc1:lc2).eq.'gamma') then
+      else if (inpstr(lc1:lc2).eq.'gamma') then
          lc2 = lc2 +1
          read(inpstr(lc2:lcl),*) realval(1)
          gamma = realval(1)
