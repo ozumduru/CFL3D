@@ -298,7 +298,7 @@ c     if freestream values are to be used (itrflg1 = 0); the check
 c     assumes if the first point has been set, all points have been
 c
       itrflg1 = 0
-      if (real(bcdata(1,1,ip,5)) .gt. -1.e10) itrflg1 = 1
+      if (real(bcdata(1,1,ip,9)) .gt. -1.e10) itrflg1 = 1
 c
       do 320 i=ista,iend1
       ii = i-ista+1
