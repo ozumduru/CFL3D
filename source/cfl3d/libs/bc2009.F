@@ -72,7 +72,9 @@ c
       common /reyue/ reue,tinf,ivisc(3)
       common /sklton/ isklton
       common /conversion/ radtodeg
+c
       common /unst/ time,cfltau,ntstep,ita,iunst,cfltau0,cfltauMax
+      common /cfl/ dt0,dtold
 c
       jdim1 = jdim-1
       kdim1 = kdim-1
