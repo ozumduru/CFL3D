@@ -66,10 +66,10 @@ c
          datahdr(7)  = 'pt/pinf_nt'
          datahdr(8)  = 'tt/tinf_nt'
          if (abs(ndata).gt.8) then
-            datahdr(5)  = '     turb1'
+            datahdr(9)  = '     turb1'
          end if
          if (abs(ndata).gt.9) then
-            datahdr(6)  = '     turb2'
+            datahdr(10)  = '     turb2'
          end if
       end if
 c
