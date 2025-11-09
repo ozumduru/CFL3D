@@ -1,0 +1,94 @@
+# CFL3D Input File YAML
+# two types of platform 1:"hpc" 2:"mypc
+   # hpc --> to much ncore and split all blocks
+   # mypc --> my pc has 4 core so split only particular blocks
+# ngrid always null. I'm take from splitted input file.
+# nplot3d true or false no other option.
+# only bc2002 and 2009 can be applied. 2009 changed from 2003 bc of pw
+
+#Auxiliary
+Auxiliary : { input_fn: "grid.inp", base_folder: "pw", ncore: 200 ,ncore_mypc: 4, platform: "mypc" , nondim: 3470}  
+
+# Initiliaze Field
+InitiliazeField: {Mesh_SEQ: "0" , all_or_ind : "0" , free-other: "1", p-u-v-w-rho: "1,0,0,0,0.714285714"}
+
+#Splitter
+Splitter:
+- { split_fn: "split.inp", ronnie_fn: null, sdgrid_fn: null}
+- { ICFLVER: 5, IRONVER: 1, IGRDFMT: 1, ISDFMT: 1 }
+- { ICFLVER: 5, IRONVER: 1, IGRDFMT: 1, ISDFMT: 1 }
+
+#LT1
+InputOutputFiles: [ "grid.bin", "cfl3d.xyz", "cfl3d.q", "cfl3d.out", "cfl3d.res", "cfl3d.turres", "cfl3d.blomax", "cfl3d.out15", "cfl3d.prout", "cfl3d.out20", "ovrlp.bin", "patch.bin", "restart.bin" ]
+
+#LT1.1
+KeywordDrivenInput:
+
+#LT2
+CaseTitle: "(Description of CFL3D Projet here)"
+
+#LT3
+FlowConditions: { XMACH: 2.0, ALPHA: -90.0, BETA: 0.0, REUE_MIL: 1.0, TINF_DR: 540.0, IALPH: 1, IHSTRY: 0 }
+
+#LT4
+ReferenceQuantities: { SREF: 0.0, CREF: 0.0, BREF: 0.0, XMC: 0.0, YMC: 0.0, ZMC: 0.0 }
+
+#LT5
+TimeStepParameters: { DT: 0.01735, IREST: 1, IFLAGTS: 0, FMAX: 0.0, IUNST: 0, CFLTAU: 10.0 }
+
+#LT6
+OptionsAndSpecifications: { NGRID: null, NPLOT3D: true, NPRINT: 4, NWREST: 1200, ICHK: 0, I2D: 1, NTSTEP: 5000, ITA: -2 }
+
+#LT7
+GridForceViscousOptions: { NCG: 0, IEM: 0, IADVANCE: 0, IFORCE: 333, IVISC_I: 0, IVISC_J: 7, IVISC_K: 7 }
+
+#LT9
+LaminarRegionSpecification: { ILAMLO: 0, ILAMHI: 0, JLAMLO: 0, JLAMHI: 0, KLAMLO: 0, KLAMHI: 0 }
+
+#LT10
+EmbeddedMeshSpecifications: { INEWG: 0, IGRIDC: 0, IS: 0, JS: 0, KS: 0, IE: 0, JE: 0, KE: 0 }
+
+#LT11
+MatrixInversionAndFluxLimiter: { IDIAG_I: 0, IDIAG_J: 0, IDIAG_K: 0 , IFLIM_I: 4, IFLIM_J: 4, IFLIM_K: 4 }
+
+#LT12
+SpatialDifferencing: { IFDS_I: 1, IFDS_J: 1, IFDS_K: 1 , RKAP0_I: 0.3333, RKAP0_J: 0.3333, RKAP0_K: 0.3333 }
+
+#LT13 - make iovrlp manually for now
+
+#LT14 - LT19
+BoundaryConditions:
+  2002: { P_Pinf: 1.0}
+  2009: { Pt_Pinf: 1.0, Tt_Tinf: 1.0, Alphae: -90.0, Betae: 0.0, Pt_Pinf_e: 7.825, Tt_Tinf_e: 1.0, Pt_Pinf_nt: 3470, Tt_Tinf_nt: 3470 }
+
+#LT20
+MeshSequencingAndMultigrid: { MSEQ: 1, MGFLAG: 0, ICONSF: 0, MTT: 0, NGAM: 0 }
+
+#LT21
+Smoothing: {ISSC: 0, EPSSSC_I: 0.3, EPSSSC_J: 0.3, EPSSSC_K: 0.3, ISSR: 0, EPSSSR_I: 0.3, EPSSSR_J: 0.3, EPSSSR_K: 0.3 }
+
+#LT22
+IterationsAndMultigridLevels:
+- { NCYC: 101, MGLEVG: 1, NEMGL: 0, NITFO: 0 }
+
+#LT23
+CoarseGridIterations:
+- { MIT1: 1, MIT2: 1, MIT3: 1, MIT4: 1, MIT5: 1 }
+
+#LT27
+NumberOfPatchedGridInterfaces: { NINTER: 0 }
+
+#LT29
+MovieOption: { IMOVIE: -5 }
+
+#LT30
+PrintOutputSpecifications:
+  - { X: 0, Y: 0.69599999, Z: 0 }
+  - { X: 0, Y: 0.5, Z: 0 }
+  - { X: 0.017928, Y: 0.32071, Z: 0 }
+  - { X: 0.17677, Y: -0.017677, Z: 0 }
+  - { IPTYPE: 1}
+  - ["chamber", "exit", "no10", "no6" ]
+
+
+
