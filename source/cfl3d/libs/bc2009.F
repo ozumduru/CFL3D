@@ -72,9 +72,7 @@ c
       common /reyue/ reue,tinf,ivisc(3)
       common /sklton/ isklton
       common /conversion/ radtodeg
-c
       common /unst/ time,cfltau,ntstep,ita,iunst,cfltau0,cfltauMax
-      common /cfl/ dt0,dtold
 c
       jdim1 = jdim-1
       kdim1 = kdim-1
@@ -112,22 +110,19 @@ c
       do 800 k=ksta,kend1
       kk = k-ksta+1
 c
-      ptes   = bcdata(kk,ii,ip,1)
-      ttes   = bcdata(kk,ii,ip,2)
+      ptes  = bcdata(kk,ii,ip,1)
+      ttes  = bcdata(kk,ii,ip,2)
       alpe  = bcdata(kk,ii,ip,3)
       betae = bcdata(kk,ii,ip,4)
-      pteend = bcdata(kk,ii,ip,5)
-      tteend = bcdata(kk,ii,ip,6)
-      ptent = bcdata(kk,ii,ip,7)
-      ttent = bcdata(kk,ii,ip,8)
+      pteend  = bcdata(kk,ii,ip,5)
+      tteend  = bcdata(kk,ii,ip,6)
+      ptet  = bcdata(kk,ii,ip,7)
+      ttet = bcdata(kk,ii,ip,8)
 c
-      pteinc=(pteend-ptes)*time/ptent/dt0
-      tteinc=(tteend-ttes)*time/ttent/dt0
-      pte=(ptes + pteinc)*p0
-      tte=ttes + tteinc
-      if (real(pte) .ge. real(pteend)) pte = pteend
-      if (real(tte) .ge. real(tteend)) tte = tteend
+      pte=ptes + (pteend-ptes)*time/ptet
+      tte=ttes + (tteend-ttes)*time/ttet
 c
+      pte=pte*p0
       alpe=alpe/radtodeg
       betae=betae/radtodeg
 c
@@ -211,22 +206,19 @@ c
       do 810 k=ksta,kend1
       kk = k-ksta+1
 c
-      ptes   = bcdata(kk,ii,ip,1)
-      ttes   = bcdata(kk,ii,ip,2)
+      ptes  = bcdata(kk,ii,ip,1)
+      ttes  = bcdata(kk,ii,ip,2)
       alpe  = bcdata(kk,ii,ip,3)
       betae = bcdata(kk,ii,ip,4)
-      pteend = bcdata(kk,ii,ip,5)
-      tteend = bcdata(kk,ii,ip,6)
-      ptent = bcdata(kk,ii,ip,7)
-      ttent = bcdata(kk,ii,ip,8)
+      pteend  = bcdata(kk,ii,ip,5)
+      tteend  = bcdata(kk,ii,ip,6)
+      ptet  = bcdata(kk,ii,ip,7)
+      ttet = bcdata(kk,ii,ip,8)
 c
-      pteinc=(pteend-ptes)*time/ptent/dt0
-      tteinc=(tteend-ttes)*time/ttent/dt0
-      pte=(ptes + pteinc)*p0
-      tte=ttes + tteinc
-      if (real(pte) .ge. real(pteend)) pte = pteend
-      if (real(tte) .ge. real(tteend)) tte = tteend
+      pte=ptes + (pteend-ptes)*time/ptet
+      tte=ttes + (tteend-ttes)*time/ttet
 c
+      pte=pte*p0
       alpe=alpe/radtodeg
       betae=betae/radtodeg
 c
@@ -294,7 +286,7 @@ c******************************************************************************
 c      k=1 boundary             nozzle total BCs                   type 2009
 c******************************************************************************
 c
-      if (nface.eq.9) then
+      if (nface.eq.5) then
 c
 c     check to see if turbulence data is input (itrflg1 = 1) or
 c     if freestream values are to be used (itrflg1 = 0); the check
@@ -309,22 +301,19 @@ c
       do 820 j=jsta,jend1
       jj = j-jsta+1
 c
-      ptes   = bcdata(jj,ii,ip,1)
-      ttes   = bcdata(jj,ii,ip,2)
+      ptes  = bcdata(jj,ii,ip,1)
+      ttes  = bcdata(jj,ii,ip,2)
       alpe  = bcdata(jj,ii,ip,3)
       betae = bcdata(jj,ii,ip,4)
-      pteend = bcdata(jj,ii,ip,5)
-      tteend = bcdata(jj,ii,ip,6)
-      ptent = bcdata(jj,ii,ip,7)
-      ttent = bcdata(jj,ii,ip,8)
+      pteend  = bcdata(jj,ii,ip,5)
+      tteend  = bcdata(jj,ii,ip,6)
+      ptet  = bcdata(jj,ii,ip,7)
+      ttet = bcdata(jj,ii,ip,8)
 c
-      pteinc=(pteend-ptes)*time/ptent/dt0
-      tteinc=(tteend-ttes)*time/ttent/dt0
-      pte=(ptes + pteinc)*p0
-      tte=ttes + tteinc
-      if (real(pte) .ge. real(pteend)) pte = pteend
-      if (real(tte) .ge. real(tteend)) tte = tteend
+      pte=ptes + (pteend-ptes)*time/ptet
+      tte=ttes + (tteend-ttes)*time/ttet
 c
+      pte=pte*p0
       alpe=alpe/radtodeg
       betae=betae/radtodeg
 c
@@ -408,22 +397,19 @@ c
       do 830 j=jsta,jend1
       jj = j-jsta+1
 c
-      ptes   = bcdata(jj,ii,ip,1)
-      ttes   = bcdata(jj,ii,ip,2)
+      ptes  = bcdata(jj,ii,ip,1)
+      ttes  = bcdata(jj,ii,ip,2)
       alpe  = bcdata(jj,ii,ip,3)
       betae = bcdata(jj,ii,ip,4)
-      pteend = bcdata(jj,ii,ip,5)
-      tteend = bcdata(jj,ii,ip,6)
-      ptent = bcdata(jj,ii,ip,7)
-      ttent = bcdata(jj,ii,ip,8)
+      pteend  = bcdata(jj,ii,ip,5)
+      tteend  = bcdata(jj,ii,ip,6)
+      ptet  = bcdata(jj,ii,ip,7)
+      ttet = bcdata(jj,ii,ip,8)
 c
-      pteinc=(pteend-ptes)*time/ptent/dt0
-      tteinc=(tteend-ttes)*time/ttent/dt0
-      pte=(ptes + pteinc)*p0
-      tte=ttes + tteinc
-      if (real(pte) .ge. real(pteend)) pte = pteend
-      if (real(tte) .ge. real(tteend)) tte = tteend
+      pte=ptes + (pteend-ptes)*time/ptet
+      tte=ttes + (tteend-ttes)*time/ttet
 c
+      pte=pte*p0
       alpe=alpe/radtodeg
       betae=betae/radtodeg
 c
@@ -507,22 +493,19 @@ c
       do 840 j=jsta,jend1
       jj = j-jsta+1
 c
-      ptes   = bcdata(jj,kk,ip,1)
-      ttes   = bcdata(jj,kk,ip,2)
+      ptes  = bcdata(jj,kk,ip,1)
+      ttes  = bcdata(jj,kk,ip,2)
       alpe  = bcdata(jj,kk,ip,3)
       betae = bcdata(jj,kk,ip,4)
-      pteend = bcdata(jj,kk,ip,5)
-      tteend = bcdata(jj,kk,ip,6)
-      ptent = bcdata(jj,kk,ip,7)
-      ttent = bcdata(jj,kk,ip,8)
+      pteend  = bcdata(jj,kk,ip,5)
+      tteend  = bcdata(jj,kk,ip,6)
+      ptet  = bcdata(jj,kk,ip,7)
+      ttet = bcdata(jj,kk,ip,8)
 c
-      pteinc=(pteend-ptes)*time/ptent/dt0
-      tteinc=(tteend-ttes)*time/ttent/dt0
-      pte=(ptes + pteinc)*p0
-      tte=ttes + tteinc
-      if (real(pte) .ge. real(pteend)) pte = pteend
-      if (real(tte) .ge. real(tteend)) tte = tteend
+      pte=ptes + (pteend-ptes)*time/ptet
+      tte=ttes + (tteend-ttes)*time/ttet
 c
+      pte=pte*p0
       alpe=alpe/radtodeg
       betae=betae/radtodeg
 c
@@ -605,22 +588,19 @@ c
       do 850 j=jsta,jend1
       jj = j-jsta+1
 c
-      ptes   = bcdata(jj,kk,ip,1)
-      ttes   = bcdata(jj,kk,ip,2)
+      ptes  = bcdata(jj,kk,ip,1)
+      ttes  = bcdata(jj,kk,ip,2)
       alpe  = bcdata(jj,kk,ip,3)
       betae = bcdata(jj,kk,ip,4)
-      pteend = bcdata(jj,kk,ip,5)
-      tteend = bcdata(jj,kk,ip,6)
-      ptent = bcdata(jj,kk,ip,7)
-      ttent = bcdata(jj,kk,ip,8)
+      pteend  = bcdata(jj,kk,ip,5)
+      tteend  = bcdata(jj,kk,ip,6)
+      ptet  = bcdata(jj,kk,ip,7)
+      ttet = bcdata(jj,kk,ip,8)
 c
-      pteinc=(pteend-ptes)*time/ptent/dt0
-      tteinc=(tteend-ttes)*time/ttent/dt0
-      pte=(ptes + pteinc)*p0
-      tte=ttes + tteinc
-      if (real(pte) .ge. real(pteend)) pte = pteend
-      if (real(tte) .ge. real(tteend)) tte = tteend
+      pte=ptes + (pteend-ptes)*time/ptet
+      tte=ttes + (tteend-ttes)*time/ttet
 c
+      pte=pte*p0
       alpe=alpe/radtodeg
       betae=betae/radtodeg
 c
