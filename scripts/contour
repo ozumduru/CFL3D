@@ -1,0 +1,24 @@
+ #!/bin/bash
+
+filename="restart"
+extension="bin"
+counter=0
+
+watch_dir="$(pwd)/con"
+cd $watch_dir
+
+inotifywait -m -e create --format "%f" "$watch_dir" | while read -r newfolder
+
+do
+    if [[ "${newfolder}" == "${counter}" ]]; then
+
+        cd $counter
+
+        cfl3d_seq < cfl3d.inp
+
+        cd $watch_dir
+
+        ((counter++))
+
+    fi
+done
