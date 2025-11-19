@@ -189,7 +189,7 @@ def CFL3Dinp():
      with open(config["Auxiliary"]["input_fn"]) as f:
          for line in f:
              if "ngrid" in line.lower():
-                 config["OptionsAndSpecifications"]["NGRID"] = next(f).split()[line.split().index("ngrid")]
+                 config["OptionsAndSpecifications"]["NGRID"] = next(f).split()[line.lower().split().index("ngrid")]
                  if config["OptionsAndSpecifications"]["NPLOT3D"]:
                      config["OptionsAndSpecifications"]["NPLOT3D"] = abs(int(config["OptionsAndSpecifications"]["NGRID"]))
                  else:
