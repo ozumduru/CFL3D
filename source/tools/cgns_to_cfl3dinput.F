@@ -345,6 +345,8 @@ c   See if there is any BC info
      +            ibocotype .ne. BCWallViscousHeatFlux .and.
      +            ibocotype .ne. BCWallViscousIsothermal .and.
      +            ibocotype .ne. BCWallInviscid .and.
+     +            ibocotype .ne. BCOutflowSubsonic .and.
+     +            ibocotype .ne. BCInflowSubsonic .and.
      +            ibocotype .ne. BCInflowSupersonic .and.
      +            ibocotype .ne. BCTunnelInflow .and.
      +            ibocotype .ne. BCSymmetryPolar .and.
@@ -856,6 +858,22 @@ c       search thru all the 1-to-1 connections
                 ndata=0
                 write(7,'(8i10)') n,iseg,ibctyp,jsta,jend,ksta,
      +            kend,ndata
+              else if (ibctype(n,nn) .eq. BCOutFlowSubsonic) then
+                ibctyp=2002
+                ndata=1
+                write(7,'(8i10)') n,iseg,ibctyp,jsta,jend,ksta,
+     +            kend,ndata
+                write(7,'(''              P/PINF'')')
+                write(7,'(''                 XXX'')')
+              else if (ibctype(n,nn) .eq. BCInflowSubsonic) then
+                ibctyp=2009
+                ndata=8
+                write(7,'(8i10)') n,iseg,ibctyp,jsta,jend,ksta,
+     +            kend,ndata
+                write(7,'(''   PT/PINF   TT/TINF    ALPHAE     BETAE''
+     +  ''      PT/PINF_e TT/TINF_e ALPHAE_nt  BETAE_nt'')')
+                write(7,'(''      XXX       XXX       XXX       XXX''
+     +  ''      XXX       XXX       XXX       XXX'')')
               else if (ibctype(n,nn) .eq. BCSymmetryPlane) then
                 ibctyp=1001
                 ndata=0
@@ -971,6 +989,22 @@ c       search thru all the 1-to-1 connections
                 ndata=0
                 write(7,'(8i10)') n,iseg,ibctyp,jsta,jend,ksta,
      +            kend,ndata
+              else if (ibctype(n,nn) .eq. BCOutFlowSubsonic) then
+                ibctyp=2002
+                ndata=1
+                write(7,'(8i10)') n,iseg,ibctyp,jsta,jend,ksta,
+     +            kend,ndata
+                write(7,'(''              P/PINF'')')
+                write(7,'(''                 XXX'')')
+              else if (ibctype(n,nn) .eq. BCInflowSubsonic) then
+                ibctyp=2009
+                ndata=8
+                write(7,'(8i10)') n,iseg,ibctyp,jsta,jend,ksta,
+     +            kend,ndata
+                write(7,'(''   PT/PINF   TT/TINF    ALPHAE     BETAE''
+     +  ''      PT/PINF_e TT/TINF_e ALPHAE_nt  BETAE_nt'')')
+                write(7,'(''      XXX       XXX       XXX       XXX''
+     +  ''      XXX       XXX       XXX       XXX'')')
               else if (ibctype(n,nn) .eq. BCSymmetryPlane) then
                 ibctyp=1001
                 ndata=0
@@ -1086,6 +1120,22 @@ c       search thru all the 1-to-1 connections
                 ndata=0
                 write(7,'(8i10)') n,iseg,ibctyp,ista,iend,ksta,
      +            kend,ndata
+              else if (ibctype(n,nn) .eq. BCOutFlowSubsonic) then
+                ibctyp=2002
+                ndata=1
+                write(7,'(8i10)') n,iseg,ibctyp,ista,iend,ksta,
+     +            kend,ndata
+                write(7,'(''              P/PINF'')')
+                write(7,'(''                 XXX'')')
+              else if (ibctype(n,nn) .eq. BCInflowSubsonic) then
+                ibctyp=2009
+                ndata=8
+                write(7,'(8i10)') n,iseg,ibctyp,ista,iend,ksta,
+     +            kend,ndata
+                write(7,'(''   PT/PINF   TT/TINF    ALPHAE     BETAE''
+     +  ''      PT/PINF_e TT/TINF_e ALPHAE_nt  BETAE_nt'')')
+                write(7,'(''      XXX       XXX       XXX       XXX''
+     +  ''      XXX       XXX       XXX       XXX'')')
               else if (ibctype(n,nn) .eq. BCSymmetryPlane) then
                 ibctyp=1001
                 ndata=0
@@ -1201,6 +1251,22 @@ c       search thru all the 1-to-1 connections
                 ndata=0
                 write(7,'(8i10)') n,iseg,ibctyp,ista,iend,ksta,
      +            kend,ndata
+              else if (ibctype(n,nn) .eq. BCOutFlowSubsonic) then
+                ibctyp=2002
+                ndata=1
+                write(7,'(8i10)') n,iseg,ibctyp,ista,iend,ksta,
+     +            kend,ndata
+                write(7,'(''              P/PINF'')')
+                write(7,'(''                 XXX'')')
+              else if (ibctype(n,nn) .eq. BCInflowSubsonic) then
+                ibctyp=2009
+                ndata=8
+                write(7,'(8i10)') n,iseg,ibctyp,ista,iend,ksta,
+     +            kend,ndata
+                write(7,'(''   PT/PINF   TT/TINF    ALPHAE     BETAE''
+     +  ''      PT/PINF_e TT/TINF_e ALPHAE_nt  BETAE_nt'')')
+                write(7,'(''      XXX       XXX       XXX       XXX''
+     +  ''      XXX       XXX       XXX       XXX'')')
               else if (ibctype(n,nn) .eq. BCSymmetryPlane) then
                 ibctyp=1001
                 ndata=0
@@ -1316,6 +1382,22 @@ c       search thru all the 1-to-1 connections
                 ndata=0
                 write(7,'(8i10)') n,iseg,ibctyp,ista,iend,jsta,
      +            jend,ndata
+              else if (ibctype(n,nn) .eq. BCOutFlowSubsonic) then
+                ibctyp=2002
+                ndata=1
+                write(7,'(8i10)') n,iseg,ibctyp,ista,iend,jsta,
+     +            jend,ndata
+                write(7,'(''              P/PINF'')')
+                write(7,'(''                 XXX'')')
+              else if (ibctype(n,nn) .eq. BCInflowSubsonic) then
+                ibctyp=2009
+                ndata=8
+                write(7,'(8i10)') n,iseg,ibctyp,ista,iend,jsta,
+     +            jend,ndata
+                write(7,'(''   PT/PINF   TT/TINF    ALPHAE     BETAE''
+     +  ''      PT/PINF_e TT/TINF_e ALPHAE_nt  BETAE_nt'')')
+                write(7,'(''      XXX       XXX       XXX       XXX''
+     +  ''      XXX       XXX       XXX       XXX'')')
               else if (ibctype(n,nn) .eq. BCSymmetryPlane) then
                 ibctyp=1001
                 ndata=0
@@ -1431,6 +1513,22 @@ c       search thru all the 1-to-1 connections
                 ndata=0
                 write(7,'(8i10)') n,iseg,ibctyp,ista,iend,jsta,
      +            jend,ndata
+              else if (ibctype(n,nn) .eq. BCOutFlowSubsonic) then
+                ibctyp=2002
+                ndata=1
+                write(7,'(8i10)') n,iseg,ibctyp,ista,iend,jsta,
+     +            jend,ndata
+                write(7,'(''              P/PINF'')')
+                write(7,'(''                 XXX'')')
+              else if (ibctype(n,nn) .eq. BCInflowSubsonic) then
+                ibctyp=2009
+                ndata=8
+                write(7,'(8i10)') n,iseg,ibctyp,ista,iend,jsta,
+     +            jend,ndata
+                write(7,'(''   PT/PINF   TT/TINF    ALPHAE     BETAE''
+     +  ''      PT/PINF_e TT/TINF_e ALPHAE_nt  BETAE_nt'')')
+                write(7,'(''      XXX       XXX       XXX       XXX''
+     +  ''      XXX       XXX       XXX       XXX'')')
               else if (ibctype(n,nn) .eq. BCSymmetryPlane) then
                 ibctyp=1001
                 ndata=0
