@@ -46,19 +46,19 @@
 # *************** COMPILER FLAG DEFINITIONS (MACHINE SPECIFIC) ***************
 #                 (CURRENT DEFINITIONS FOR x86_64 ARCHITECTURE)
 
-FFLAG        = -O3 -fbacktrace -w -march=native -J../../$(CFLLIBSD)
-FFLAG_SPEC   = -O3 -fbacktrace -w -march=native -J../../$(CFLLIBSD)
-PREC         = -fdefault-real-8
+FFLAG        = -O3 -fbacktrace -finit-local-zero -w -march=native -J../../$(CFLLIBSD)
+FFLAG_SPEC   = -O3 -fbacktrace -finit-local-zero -w -march=native -J../../$(CFLLIBSD)
+PREC         = -fdefault-real-8 -fdefault-integer-8
 PREC_MPI     = -DDBLE_PRECSN
 LFLAG        = -z muldefs -march=native -fbacktrace 
-LLIBS        = -L/usr/local/lib  -lcgns 
+LLIBS        = -L/usr/local/lib  -lcgns
 LLIBS_SEQ    = -L/usr/local/lib  -lcgns
 MPI_INCDIR   =
 CGNS_INCDIR  = -I/usr/local/include
 CPP          = cpp
 CPPFLAG      = -P
 CPPOPT       =  -DFASTIO $(MPI_INCDIR) -DDIST_MPI $(PREC_MPI)
-CPPOPT_SP    = -fallow-argument-mismatch -DP3D_SINGLE -DLINUX -DINTEL -DNOREDIRECT $(PREC_MPI) $(CGNS_INCDIR)
+CPPOPT_SP    = -fallow-argument-mismatch -DP3D_SINGLE -DLINUX -DINTEL -DNOREDIRECT -DCGNS $(PREC_MPI) $(CGNS_INCDIR)
 CPPOPT_CMPLX = -DCMPLX
 FTN          = mpif90
 CC           = gcc
