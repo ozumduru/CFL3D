@@ -203,14 +203,14 @@ def CFL3Dinp():
 
          copy = False; bc_all = []
          for line in f:
-             if " grid " in line: copy = True
-             if "mseq" in line: break
+             if " grid " in line.lower(): copy = True
+             if "mseq" in line.lower(): break
              if copy: bc_all.append(line)
          
          copy = False; one2one_blocking = []
          for line in f:
-             if "1-1" in line: copy = True
-             if "patch" in line: break
+             if "1-1" in line.lower(): copy = True
+             if "patch" in line.lower(): break
              if copy: one2one_blocking.append(line)
 
      for i, line in enumerate(bc_all):
@@ -219,7 +219,7 @@ def CFL3Dinp():
                  bc_all[i + 1] = " "*6 + str(config["BoundaryConditions"][2002]["P_Pinf"]) + "\n"
 
          if 2009 in config["BoundaryConditions"]:
-             if line.strip() == "      mach   pt/pinf   tt/tinf     alpha      beta".strip():
+             if "      mach   pt/pinf   tt/tinf" in line.lower():
                  parts = re.findall(r'\s*\S+', bc_all[i-1])
                  parts[2] = parts[2].replace("2003", "2009")
                  parts[7] = parts[7].replace("5", "8")
