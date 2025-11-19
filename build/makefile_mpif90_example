@@ -51,8 +51,8 @@ FFLAG_SPEC   = -O3 -fbacktrace -w -march=native -J../../$(CFLLIBSD)
 PREC         = -fdefault-real-8
 PREC_MPI     = -DDBLE_PRECSN
 LFLAG        = -z muldefs -march=native -fbacktrace 
-LLIBS        = -L/usr/local/lib  -lcgns -lhdf5
-LLIBS_SEQ    = -L/usr/local/lib  -lcgns -lhdf5
+LLIBS        = -L/usr/local/lib  -lcgns 
+LLIBS_SEQ    = -L/usr/local/lib  -lcgns
 MPI_INCDIR   =
 CGNS_INCDIR  = -I/usr/local/include
 CPP          = cpp
