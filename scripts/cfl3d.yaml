@@ -7,7 +7,7 @@
 # only bc2002 and 2009 can be applied. 2009 changed from 2003
 
 # ------------------------------------------------ Auxiliary Data -----------------------------------------------
-Auxiliary : { input_fn: "co50.inp", base_folder: "pw", ncore: 200 ,ncore_mypc: 4, platform: "mypc" , nondim: 347}
+Auxiliary : { input_fn: "co50.inp", base_folder: "pw", ncore: 200 ,ncore_mypc: 4, platform: "mypc" }
 
 # ------------------------------------------ Initiliaze Field -------------------------------------------
 InitiliazeField: {Mesh_SEQ: "0" , all_or_ind : "0" , free-other: "1", p-u-v-w-rho: "1,0,0,0,0.714285714"}
