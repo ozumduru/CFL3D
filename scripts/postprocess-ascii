@@ -187,11 +187,10 @@ def CFL3D_prout_pointprobe():
 
          t0 = config["TimeStepParameters"]["DT"]*abs(config["MovieOption"]["IMOVIE"])
          tinc = t0
-         nondim = config["Auxiliary"]["nondim"]
          [new_lines.append(filtered_lines[i].strip().split()) for i in range(len(filtered_lines))]
          dataa = np.array(new_lines, dtype=np.float64).reshape((int(np.size(new_lines)/14),14))[:,6:]
          data = pd.DataFrame(np.array(dataa).reshape((int(np.size(dataa)/8),8)))
-         time = pd.DataFrame([ t0 + k*tinc for k in range(int(len(data[0])/nprint))],columns=['time']).apply(lambda x: np.float64(x)/nondim)
+         time = pd.DataFrame([ t0 + k*tinc for k in range(int(len(data[0])/nprint))],columns=['time']).apply(lambda x: np.float64(x))
          time = time.loc[time.index.repeat(nprint)].reset_index(drop=True)
          data = data.rename(columns={ 0:"U/Uinf", 1:"V/Vinf", 2:"W/Winf", 3:"P/Pinf", 4:"T/Tinf", 5:"MACH", 6:"cp", 7:"tur. vis."})
          data = pd.concat([time,data],axis=1)
